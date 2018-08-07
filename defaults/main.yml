@@ -1,0 +1,29 @@
+phpfpm_version: 7.0
+phpfpm_group: www-data
+phpfpm_dir: /etc/php/{{ phpfpm_version }}/fpm
+phpfpm_dir_log: /var/log/phpfpm
+phpfpm_packages:
+  - 'php{{ phpfpm_version }}-readline'
+  - 'php{{ phpfpm_version }}-curl'
+  - 'php{{ phpfpm_version }}-mcrypt'
+  - 'php{{ phpfpm_version }}-gd'
+phpfpm_logrotate_options:
+  - rotate 14
+  - daily
+  - missingok
+  - notifempty
+  - compress
+  - delaycompress
+phpfpm_pools: []
+phpfpm_ping_path: /ping
+phpfpm_ping_response: pong
+phpfpm_pm: ondemand
+phpfpm_pm_max_children: 16
+phpfpm_pm_start_servers: 4
+phpfpm_pm_min_spare_servers: 2
+phpfpm_pm_max_spare_servers: 8
+phpfpm_pm_max_requests: 500
+phpfpm_pm_process_idle_timeout: 10
+phpfpm_pm_status_path: /status
+phpfpm_request_slowlog_timeout: 10
+phpfpm_security_limit_extensions: .php

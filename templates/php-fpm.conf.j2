@@ -1,0 +1,20 @@
+; {{ ansible_managed }}
+
+[global]
+
+error_log = {{ phpfpm_dir_log }}/php-fpm.log
+syslog.facility = daemon
+syslog.ident = php-fpm
+log_level = notice
+
+emergency_restart_threshold = 0
+emergency_restart_interval = 0
+
+process_control_timeout = 0
+process.max = 0
+
+daemonize = yes
+rlimit_core = 0
+systemd_interval = 10
+
+include = {{ phpfpm_dir }}/pools.conf

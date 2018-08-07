@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+{{ phpfpm_dir_log}}/*.log {
+{% for option in phpfpm_logrotate_options %}
+  {{ option }}
+{% endfor %}
+  postrotate
+    /usr/lib/php/php{{ phpfpm_version }}-fpm-reopenlogs
+  endscript
+}

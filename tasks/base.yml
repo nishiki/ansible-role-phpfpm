@@ -1,0 +1,54 @@
+- name: install php-fpm package
+  package:
+    name: 'php{{ phpfpm_version }}-fpm'
+  tags: phpfpm
+
+- name: install additionnal packages
+  package:
+    name: '{{ item }}'
+  with_items: '{{ phpfpm_packages }}'
+  tags: phpfpm
+
+- name: create log directory
+  file:
+    path: '{{ phpfpm_dir_log }}'
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  tags: phpfpm
+
+- name: check if log file exist
+  stat:
+    path: '{{ phpfpm_dir_log }}/php-fpm.log'
+  register: st
+  tags: phpfpm
+
+- name: create log file
+  file:
+    path: '{{ phpfpm_dir_log }}/php-fpm.log'
+    owner: root
+    group: root
+    mode: 0640
+    state: touch
+  when: not st.stat.exists
+  tags: phpfpm
+
+- name: copy logrotate configuration
+  template:
+    src: logrotate.j2
+    dest: '/etc/logrotate.d/php{{ phpfpm_version }}-fpm'
+    owner: root
+    group: root
+    mode: 0644
+  tags: phpfpm
+
+- name: copy global php-fpm configuration file
+  template:
+    src: php-fpm.conf.j2
+    dest: '{{ phpfpm_dir }}/php-fpm.conf'
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload php-fpm
+  tags: phpfpm
