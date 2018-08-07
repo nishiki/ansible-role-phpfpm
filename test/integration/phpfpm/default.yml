@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  vars:
+    phpfpm_pools:
+      - name: www
+        user: www
+        home: /opt/www
+        uid: 1001
+
+  roles:
+    - ansible-role-phpfpm
