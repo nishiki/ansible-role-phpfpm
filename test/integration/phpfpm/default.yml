@@ -1,0 +1,16 @@
+- hosts: localhost
+  connection: local
+  vars:
+    phpfpm_pools:
+      - name: website1
+        user: www
+        home: /opt/www
+        uid: 1001
+      - name: website2
+        user: website2
+        home: /opt/website2
+        pm: static
+        pm_max_children: 4
+
+  roles:
+    - ansible-role-phpfpm

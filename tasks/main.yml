@@ -1,0 +1,10 @@
+- include_tasks: base.yml
+
+- include_tasks: pools.yml
+
+- name: enable and start php-fpm
+  systemd:
+    name: php{{ phpfpm_version }}-fpm
+    state: started
+    enabled: yes
+  tags: phpfpm

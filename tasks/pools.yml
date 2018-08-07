@@ -1,0 +1,58 @@
+- name: create user for php-fpm with a specify uid
+  user:
+    name: '{{ item.user }}'
+    group: '{{ item.group|default(phpfpm_group) }}'
+    uid: '{{ item.uid }}'
+    home: '{{ item.home }}'
+  with_items: '{{ phpfpm_pools }}'
+  when: item.uid is defined
+  tags: phpfpm
+
+- name: create user for php-fpm without a specify uid
+  user:
+    name: '{{ item.user }}'
+    group: '{{ item.group|default(phpfpm_group) }}'
+    home: '{{ item.home }}'
+  with_items: '{{ phpfpm_pools }}'
+  when: not item.uid is defined
+  tags: phpfpm
+
+- name: set attributes on homes directories
+  file:
+    path: '{{ item.home }}'
+    owner: '{{ item.user }}'
+    group: www-data
+    mode: 0750
+    state: directory
+  with_items: '{{ phpfpm_pools }}'
+  tags: phpfpm
+
+- name: check if pools log files exist
+  stat:
+    path: '{{ phpfpm_dir_log }}/{{ item[0].name }}.{{ item[1] }}'
+  with_nested:
+    - '{{ phpfpm_pools }}'
+    - ['slow.log', 'access.log', 'log']
+  register: st
+  tags: phpfpm
+
+- name: create log files
+  file:
+    path: '{{ phpfpm_dir_log }}/{{ item.item[0].name }}.{{ item.item[1] }}'
+    owner: root
+    group: www-data
+    mode: 0640
+    state: touch
+  with_items: '{{ st.results }}'
+  when: not item.stat.exists
+  tags: phpfpm
+
+- name: copy pools php-fpm configuration file
+  template:
+    src: pools.conf.j2
+    dest: '{{ phpfpm_dir }}/pools.conf'
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload php-fpm
+  tags: phpfpm
