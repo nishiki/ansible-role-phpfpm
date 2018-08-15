@@ -1,5 +1,5 @@
 # Ansible role: PHP FPM
-[![Version](https://img.shields.io/badge/latest_version-1.0.0-dev-green.svg)](https://git.yaegashi.fr/nishiki/ansible-role-phpfpm/releases)
+[![Version](https://img.shields.io/badge/latest_version-1.0.0-green.svg)](https://git.yaegashi.fr/nishiki/ansible-role-phpfpm/releases)
 [![Build Status](https://travis-ci.org/nishiki/ansible-role-phpfpm.svg?branch=master)](https://travis-ci.org/nishiki/ansible-role-phpfpm)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://git.yaegashi.fr/nishiki/ansible-role-phpfpm/src/branch/master/LICENSE)
 
