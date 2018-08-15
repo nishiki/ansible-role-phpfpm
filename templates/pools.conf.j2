@@ -4,7 +4,7 @@
 [{{ pool.name }}]
 
 user  = {{ pool.user }}
-group = {{ pool.group|default(phpfpm_group) }}
+group = users
 
 listen       = /var/run/php{{ phpfpm_version }}-fpm-{{ pool.name }}.sock
 listen.owner = {{ pool.user }}

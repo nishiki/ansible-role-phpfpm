@@ -19,12 +19,6 @@ puts '================================'
   end
 end
 
-describe user('www') do
-  it { should exist }
-  it { should have_uid 1001 }
-  it { should belong_to_group 'www-data' }
-end
-
 describe file('/etc/logrotate.d/php7.0-fpm') do
   it { should be_file }
   it { should be_mode 644 }

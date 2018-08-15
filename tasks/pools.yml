@@ -1,22 +1,3 @@
-- name: create user for php-fpm with a specify uid
-  user:
-    name: '{{ item.user }}'
-    group: '{{ item.group|default(phpfpm_group) }}'
-    uid: '{{ item.uid }}'
-    home: '{{ item.home }}'
-  with_items: '{{ phpfpm_pools }}'
-  when: item.uid is defined
-  tags: phpfpm
-
-- name: create user for php-fpm without a specify uid
-  user:
-    name: '{{ item.user }}'
-    group: '{{ item.group|default(phpfpm_group) }}'
-    home: '{{ item.home }}'
-  with_items: '{{ phpfpm_pools }}'
-  when: not item.uid is defined
-  tags: phpfpm
-
 - name: set attributes on homes directories
   file:
     path: '{{ item.home }}'
