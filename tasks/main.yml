@@ -1,6 +1,8 @@
 - include_tasks: base.yml
+  tags: phpfpm
 
 - include_tasks: pools.yml
+  tags: phpfpm
 
 - name: enable and start php-fpm
   systemd:
