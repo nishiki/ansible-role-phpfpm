@@ -8,7 +8,7 @@ group = users
 
 listen       = /var/run/php{{ phpfpm_version }}-fpm-{{ pool.name }}.sock
 listen.owner = {{ pool.user }}
-listen.group = {{ pool.group|default(phpfpm_group) }}
+listen.group = {{ pool.group|default(pool.user) }}
 
 pm                      = {{ pool.pm|default(phpfpm_pm) }}
 pm.max_children         = {{ pool.pm_max_children|default(phpfpm_pm_max_children) }}

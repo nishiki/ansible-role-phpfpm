@@ -1,5 +1,4 @@
 phpfpm_version: 7.0
-phpfpm_group: www-data
 phpfpm_dir: /etc/php/{{ phpfpm_version }}/fpm
 phpfpm_dir_log: /var/log/phpfpm
 phpfpm_packages:

@@ -33,7 +33,6 @@ Install and configure PHP FPM
 
 See [php pool directives documentation](http://php.net/manual/en/install.fpm.configuration.php)
 
-* `phpfpm_group` - (default: `www-data`)
 * `phpfpm_ping_path` - (default: `/ping`)
 * `phpfpm_ping_response` - (default: `pong`)
 * `phpfpm_pm` - (default: `ondemand`)
