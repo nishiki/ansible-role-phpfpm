@@ -4,10 +4,8 @@
     phpfpm_pools:
       - name: website1
         user: www
-        home: /opt/www
       - name: website2
         user: www
-        home: /opt/website2
         pm: static
         pm_max_children: 4
 
