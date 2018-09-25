@@ -4,11 +4,11 @@
 [{{ pool.name }}]
 
 user  = {{ pool.user }}
-group = users
+group = {{ pool.group|default(pool.user) }}
 
 listen       = /var/run/php{{ phpfpm_version }}-fpm-{{ pool.name }}.sock
 listen.owner = {{ pool.user }}
-listen.group = {{ pool.group|default(pool.user) }}
+listen.group = www-data
 
 pm                      = {{ pool.pm|default(phpfpm_pm) }}
 pm.max_children         = {{ pool.pm_max_children|default(phpfpm_pm_max_children) }}
