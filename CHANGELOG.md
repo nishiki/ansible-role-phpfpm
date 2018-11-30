@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- test: add ansible-lint
 
 ## v1.1.0 (2018-09-30)
 - feat: set attributes on homes directories

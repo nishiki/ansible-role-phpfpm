@@ -11,11 +11,15 @@ services:
 
 before_install:
   - bundle install
+  - sudo pip install --upgrade pip
+  - sudo pip install ansible-lint
+  - git clone https://github.com/ansible/galaxy-lint-rules.git
 
 script:
   - kitchen conv phpfpm-debian-9
   - kitchen conv phpfpm-debian-9 | grep changed=0
   - kitchen verify phpfpm-debian-9
+  - ansible-lint -r galaxy-lint-rules/rules .
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
