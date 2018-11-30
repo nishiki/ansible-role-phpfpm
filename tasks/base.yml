@@ -1,3 +1,4 @@
+---
 - name: install php-fpm package
   package:
     name: 'php{{ phpfpm_version }}-fpm'

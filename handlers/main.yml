@@ -1,3 +1,4 @@
+---
 - name: reload php-fpm
   systemd:
     name: 'php{{ phpfpm_version }}-fpm'

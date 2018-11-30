@@ -1,3 +1,4 @@
+---
 - name: check if pools log files exist
   stat:
     path: '{{ phpfpm_dir_log }}/{{ item[0].name }}.{{ item[1] }}'

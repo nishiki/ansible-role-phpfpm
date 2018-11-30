@@ -5,6 +5,7 @@ Which is based on [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
 - test: add ansible-lint
+- test: add yamllint
 
 ## v1.1.0 (2018-09-30)
 - feat: set attributes on homes directories
