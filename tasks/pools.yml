@@ -2,9 +2,12 @@
 - name: check if pools log files exist
   stat:
     path: '{{ phpfpm_dir_log }}/{{ item[0].name }}.{{ item[1] }}'
-  with_nested:
-    - '{{ phpfpm_pools }}'
-    - ['slow.log', 'access.log', 'log']
+  loop: '{{ phpfpm_pools|product(log_files)|list }}'
+  vars:
+    log_files:
+      - slow.log
+      - access.log
+      - log
   register: st
   tags: phpfpm
 
@@ -15,7 +18,7 @@
     group: www-data
     mode: 0640
     state: touch
-  with_items: '{{ st.results }}'
+  loop: '{{ st.results }}'
   when: not item.stat.exists
   tags: phpfpm
 

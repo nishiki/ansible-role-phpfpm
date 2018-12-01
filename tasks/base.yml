@@ -6,8 +6,7 @@
 
 - name: install additionnal packages
   package:
-    name: '{{ item }}'
-  with_items: '{{ phpfpm_packages }}'
+    name: '{{ phpfpm_packages }}'
   tags: phpfpm
 
 - name: create log directory

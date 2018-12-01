@@ -7,7 +7,7 @@ Install and configure PHP FPM
 
 ## Requirements
 
-* Ansible >= 2.4
+* Ansible >= 2.5
 * Debian Stretch
 
 ## Role variables
